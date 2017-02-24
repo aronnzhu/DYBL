@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+	
+
+
+{% block content %}
+
+<!-- Blog Single -->
+<div class="blog blog-single">
+
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-sm-8">
+				
+				<div class="blog-post-single">
+					
+					<a href="#" class="image">
+						<img src="/static/images/portfolio-img-large.png" class="img-responsive img-rounded" />
+					</a>
+											
+					<div class="post-details">
+						
+						<h3>
+							<a href="#">{{ note_detail.0.title }}</a>
+						</h3>
+						
+						<div class="post-meta">
+							
+							<div class="meta-info">
+								<i class="entypo-calendar"></i> {{ note_detail.0.update_time }}							</div>
+							
+							<div class="meta-info">
+								<i class="entypo-comment"></i>
+								<u>{{ note_detail.0.comment_set.count }}</u>
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					
+					<div class="post-content">
+                        {{ note_detail.0.content }}
+					</div>
+					
+					<br />
+					
+					<h3>
+						<strong>评 论</strong>
+						<small class="text-muted">({{ note_detail.0.comment_set.count }})</small>
+					</h3>
+					
+					<hr />
+					
+					<!-- Comments List -->
+                    <ul class="comments-list">
+					
+						<!-- Comment -->
+                        <li>
+							{% for comment in note_detail.0.comment_set.all %}
+							<div class="comment">
+								<div class="comment-thumb">
+									<a href="#">
+										<img src="/static/images/user-icon.png" class="img-circle" />
+									</a>
+								</div>
+								
+								<div class="comment-content">
+									
+									<div class="comment-author">
+										<a href="#">{{ comment.poster }}</a>
+										
+										<div class="comment-info">
+											<span class="time">12 hours ago</span>
+											<a href="../../media/{{ comment.uploads }}">{{ comment.uploads }}</a>
+										</div>
+									</div>
+									
+									<div class="comment-text">
+										{{ comment.comment }}
+									</div>
+									
+								</div>
+							</div>
+                            {% endfor %}
+							
+						</li>
+
+					</ul>
+					
+					
+					
+					<h3>
+						<strong>发表评论</strong>
+					</h3>
+					
+					<hr />
+
+                    <form class="comment-form" method="POST" action="/n/comment/" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ c_form }}
+                        <input type="text" name="note_id" value="{{ note_detail.0.id }}" style="display: none">
+                        <input type="submit" class="btn btn-primary pull-right" value="提交">
+                        </div>
+                    </form>
+					
+				</div>
+				
+			</div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+{% block sidebar %} {% endblock %}

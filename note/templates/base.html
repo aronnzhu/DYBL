@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Neon Admin Panel" />
+	<meta name="author" content="" />
+
+	<title>渤海金控企业门户</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="/static/css/neon.css">
+
+	<script src="/static/js/jquery-1.11.0.min.js"></script>
+
+	<!--[if lt IE 9]><script src="/static/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
+</head>
+<body>
+{% block top %}
+<div class="wrap">
+	
+	<!-- Logo and Navigation --><div class="site-header-container container">
+
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<header class="site-header">
+
+				<section class="site-logo">
+
+					<a href="index.html">
+						<img src="/static/images/logo@2x.png" width="120" />
+					</a>
+
+				</section>
+
+				<nav class="site-nav">
+
+					<ul class="main-menu hidden-xs" id="main-menu">
+						<li>
+							<a href="/n/">
+								<span>企业门户</span>
+							</a>
+						</li>
+						<li>
+							<a href="/n/policy/">
+								<span>制度</span>
+							</a>
+						</li>
+						<li>
+							<a href="/n/news/">
+								<span>新闻</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="/n/list/">
+								<span>笔记</span>
+							</a>
+						</li>
+						<li>
+							<a href="/n/tools">
+								<span>工具</span>
+							</a>
+						</li>
+						<li class="search">
+							<a href="#">
+								<i class="entypo-search"></i>
+							</a>
+
+							<form method="get" class="search-form" action="" enctype="application/x-www-form-urlencoded">
+								<input type="text" class="form-control" name="q" placeholder="输入内容" />
+							</form>
+						</li>
+                        
+                        {{ user.username }} 你好
+					</ul>
+
+
+					<div class="visible-xs">
+
+						<a href="#" class="menu-trigger">
+							<i class="entypo-menu"></i>
+						</a>
+
+					</div>
+				</nav>
+
+			</header>
+
+		</div>
+
+	</div>
+   
+
+</div> 
+{% endblock %}
+
+{% block breadcrmb %}
+	<!-- Breadcrumb --><section class="breadcrumb">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-sm-9">
+
+				<h1><strong>笔 记</strong></h1>
+
+							<ol class="breadcrumb bc-3">
+						<li>
+				<a href="x.hna.net"><i class="entypo-home"></i>X平台</a>
+			</li>
+					<li>
+
+							<a href="/n/">企业门户</a>
+					</li>
+				<li class="active">
+
+							<strong>笔 记</strong>
+					</li>
+					</ol>
+
+			</div>
+
+			<div class="col-sm-3">
+
+				<h2 class="text-muted text-right">{{ number }}</h2>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+{% endblock %}
+
+{% block content %}
+<!-- content --><section class="blog">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-sm-8">
+
+
+
+			</div>
+
+			<div class="col-sm-4">
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<!-- Comments Sidebar --><div class="sidebar">
+
+	<h3>
+		<i class="entypo-chat"></i>
+		Recent Comments
+	</h3>
+
+	<div class="sidebar-content">
+
+		<ul class="discussion-list">
+			<li>
+				<a href="#" class="thumb">
+					<img src="/static/images/user-icon.png" class="img-circle" />
+				</a>
+
+				<div class="details">
+					<a href="#">John Doe</a>
+					<p>At vero eos et accusamus et iusto odio dignissimos...</p>
+				</div>
+			</li>
+
+			<li>
+				<a href="#" class="thumb">
+					<img src="/static/images/user-icon.png" class="img-circle" />
+				</a>
+
+				<div class="details">
+					<a href="#">John Doe</a>
+					<p>At vero eos et accusamus et iusto odio dignissimos...</p>
+				</div>
+			</li>
+
+			<li>
+				<a href="#" class="thumb">
+					<img src="/static/images/user-icon.png" class="img-circle" />
+				</a>
+
+				<div class="details">
+					<a href="#">John Doe</a>
+					<p>At vero eos et accusamus et iusto odio dignissimos...</p>
+				</div>
+			</li>
+		</ul>
+
+	</div>
+
+</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+123
+</section>
+{% endblock %}
+
+{% block footer %}
+	<!-- Footer Widgets --><section class="footer-widgets">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-sm-6">
+
+				<a href="#">
+					<img src="/static/images/logo@2x.png" width="100" />
+				</a>
+
+				<p>
+					Vivamus imperdiet felis consectetur onec eget orci adipiscing nunc. <br />
+					Pellentesque fermentum, ante ac interdum ullamcorper.
+				</p>
+
+			</div>
+
+			<div class="col-sm-3">
+
+				<h5>渤海金控</h5>
+
+				<p>
+					北京市朝阳区霄云路甲26号<br />
+					北京海航大厦20层<br />
+					邮编：100125
+				</p>
+
+			</div>
+
+			<div class="col-sm-3">
+
+				<h5>天津渤海</h5>
+
+				<p>
+					天津空港经济区环河北路76号<br />
+					空港商务园区7-1-301<br />
+					邮编：
+				</p>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+{% endblock %}
+
+{% block bottom %}
+
+<!-- Site Footer --><footer class="site-footer">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-sm-6">
+				技术支持： 渤海金控金融信息服务部  
+			</div>
+
+			<div class="col-sm-6">
+
+				<ul class="social-networks text-right">
+					<li>
+						<a href="#">
+							<i class="entypo-instagram"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="entypo-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="entypo-facebook"></i>
+						</a>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+</div>
+
+{% endblock %}
+
+	<!-- Bottom Scripts -->
+	<script src="/static/js/gsap/main-gsap.js"></script>
+	<script src="/static/js/bootstrap.js"></script>
+	<script src="/static/js/joinable.js"></script>
+	<script src="/static/js/resizeable.js"></script>
+	<script src="/static/js/neon-custom.js"></script>
+
+</body>
+</html>

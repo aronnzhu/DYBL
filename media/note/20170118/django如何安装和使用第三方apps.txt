@@ -1,0 +1,27 @@
+django，如何安装和使用第三方apps[转] (2012-05-30 22:51:23)转载▼
+标签： django python app package it	
+有些问题非常浅显，但却很关键。由于太简单，网上的资料反倒很少，比如“如何在django中使用第三方apps”，
+python的方便之处就在这里，有丰富的现成app可供使用，比如注册，头像，分页等等。直接回答这个问题的文章
+并不多，综合我搜的的资料和今天的实践写成本文，希望对新手有所帮助。
+安装
+安装方式有两种，以django-pagination（一个分页app）为例：
+1）将django-pagination的安装包下载下来解压后运行自带的"setup.py"来安装用，它有一种更好更简单的方式："pip install django-pagination"命令安装，这样django-pagination将被安装到"...\SAEPYTHON\Lib\site-packages"目录中，其中SAEPYTHON为virtualenv环境。
+这种方式的优点：（1）易于升级 （2）将自己写的app和第三方app隔离开 
+缺点：在一些没有安装权限的主机环境中无法使用
+2）将django-pagination下载下来放到工程的目录中，或者PYTHONPATH所覆盖的目录中，这样可以利用"相对import"的特性，或者一步到位的安装到PYTHONPATH覆盖的目录中。
+这种方式的优缺点和第一种方式刚好相反。
+使用
+安装完成之后一般经过以下步骤中一个或几个的才可以使用
+1）修改settings.py
+添加app 
+INSTALLED_APPS = ( 
+..., 
+'pagination', 
+) 
+2) 添加中间件
+MIDDLEWARE_CLASSES = ( 
+..., 
+'pagination.middleware.PaginationMiddleware', 
+) 
+3）运行 manage.py syncdb 来同步数据库。
+4）修改urls.py 增加一行 (r’^register/’,include(’register.urls’))。

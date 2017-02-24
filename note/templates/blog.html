@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<!-- Note --><section class="blog">
+	
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-sm-8">
+				
+				<div class="blog-posts">
+					{% for note in n %}
+					<!-- Note List -->					<div class="blog-post">
+						
+						<div class="post-thumb">
+						
+							<a href="blog-post.html">
+								<img src="/static/images/gallery-thumb.png" class="img-rounded" />
+								<span class="hover-zoom"></span>
+							</a>
+							
+						</div>
+						
+						<div class="post-details">
+							
+							<h3>
+								<a href="/n/document/?read={{ note.id }}">{{note.title }}</a>
+							</h3>
+							
+							<div class="post-meta">
+								
+								<div class="meta-info">
+									<i class="entypo-calendar"></i> {{note.update_time }}								</div>
+								
+								<div class="meta-info">
+									<i class="entypo-comment"></i>
+									<u>{{ note.comment_set.count }}</u>
+								</div>
+
+                                <div class="meta-info">
+									<i class="entypo-comment"></i>
+                                        {% for tag in note.tag.all %}
+                                            <u>{{ tag.name }}</u>&nbsp;&nbsp;
+                                        {% endfor %}
+                                </div>
+								
+							</div>
+							
+							<p> {{note.content }}</p>
+							
+						</div>
+						
+					</div>
+                    {% endfor %}
+					
+			
+					<!-- Pagination -->					<div class="text-center">
+					
+						<ul class="pagination">
+
+                            {% if n.has_previous %}
+                                   <li>
+                                       <a class='paginator' title='上一页' href='?page={{ n.previous_page_number }}'><span>&lt;&lt;</span></a>
+                                   </li>
+                            {% endif %}
+                             {% for page in n.paginator.page_range %}
+                                 {% if page == n.number %}
+                                     <li class="active">
+                                         <a class='paginator_current' title='当前页:{{ page }}'><span>{{ page }}</span></a>
+                                     </li>
+                                 {% else %}
+                                     <li>
+                                         <a class='paginator' href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a>
+                                     </li>
+                                 {% endif %}
+                             {% endfor %}
+                             {% if n.has_next %}
+                                 <li>
+                                    <a class='paginator' title='下一页' href='?page={{ n.next_page_number }}'><span>&gt;&gt;</span></a>
+                                 </li>
+                             {% endif %}
+
+						</ul>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="col-sm-4">
+
+
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</section>
+{% endblock %}
+{% block sidebar %} {% endblock %}
