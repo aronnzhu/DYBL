@@ -127,6 +127,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+LOGIN_REDIRECT_URL = '/n/list/'
 
 AUTHENTICATION_BACKENDS = (
     'django_auth_ldap3_ad.auth.LDAP3ADBackend',   # ldap认证
@@ -154,7 +155,7 @@ LDAP_SERVERS = [
 LDAP_BIND_USER = 'bohaiit'
 LDAP_BIND_PWD = 'A1b1c1d1'
 LDAP_SEARCH_BASE = 'dc=hna,dc=net'
-LDAP_USER_SEARCH_FILTER = '(&(objectCategory=person)(objectClass=user)(sAMAccountName=%(username)s))'
+LDAP_USER_SEARCH_FILTER = '(sAMAccountName=%s)'
 
 
 LDAP_ATTRIBUTES_MAP = {
@@ -209,6 +210,6 @@ LOGGING = {
     }
 }
 
-logger = logging.getLogger('django_auth_ldap')
+logger = logging.getLogger('django_auth_ldap3_ad')
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)
