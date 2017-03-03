@@ -6,15 +6,16 @@ import logging
 from note.form import CommentForm
 from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, StreamingHttpResponse, HttpResponse
+from mynote import settings
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 log = logging.getLogger('django.request')
 
-
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def get_note(request):
     n = Note.objects.all()
     number = n.count()
-    print(type(n))
     paginator = Paginator(n, 2)
     try:
         page = int(request.GET.get('page', 1))
@@ -25,6 +26,7 @@ def get_note(request):
     return render(request, 'blog.html', locals())
 
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def read_note(request):
     read = request.GET.get('read')
     note_detail = Note.objects.filter(id=read)
@@ -32,6 +34,7 @@ def read_note(request):
     return render(request, 'blog-post.html', locals())
 
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def submit_comment(request):
     comment_form = CommentForm(request.POST, request.FILES)
     path = request.META.get('HTTP_REFERER')
@@ -73,10 +76,10 @@ def file_download(request):
 
 """
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def file_download(request):
     # do something...
-    file_name = BASE_DIR + request.GET['url']
-    print('______________________')
+    file_name = settings.BASE_DIR + request.GET['url']
     with open('file_name.txt') as f:
         c = f.read()
     return HttpResponse(c)

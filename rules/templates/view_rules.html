@@ -1,0 +1,45 @@
+{% extends "rules_index.html" %}
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+
+    <div class="container">
+        <div class="row">
+            {{ block.super }}
+            {% breadcrumb this_rule.0.r_title "#" %}
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block content %}
+{% render_breadcrumbs %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 align="center">{{ this_rule.0.r_title }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <i class="entypo-user"></i>&nbsp;{{ postser_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="entypo-calendar"></i>&nbsp;{{ this_rule.0.r_post_time }}&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="entypo-download"></i>&nbsp;<a href="../../media/{{ this_rule.uploads }}">文件下载</a>
+            </div>
+        </div>
+        <hr>
+        <div class="=row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                {% autoescape off %}
+                {{ this_rule.0.r_content }}
+                {% endautoescape %}
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 	
 
 
@@ -17,7 +17,7 @@
 				<div class="blog-post-single">
 					
 					<a href="#" class="image">
-						<img src="/static/images/portfolio-img-large.png" class="img-responsive img-rounded" />
+						<img src="{% static "/images/portfolio-img-large.png" %}" class="img-responsive img-rounded" />
 					</a>
 											
 					<div class="post-details">
@@ -63,7 +63,7 @@
 							<div class="comment">
 								<div class="comment-thumb">
 									<a href="#">
-										<img src="/static/images/user-icon.png" class="img-circle" />
+										<img src="{% static "images/user-icon.png" %}" class="img-circle" />
 									</a>
 								</div>
 								

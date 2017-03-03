@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 
 {% block content %}
@@ -18,7 +18,7 @@
 						<div class="post-thumb">
 						
 							<a href="blog-post.html">
-								<img src="/static/images/gallery-thumb.png" class="img-rounded" />
+								<img src="{% static "/images/gallery-thumb.png" %}" class="img-rounded" />
 								<span class="hover-zoom"></span>
 							</a>
 							

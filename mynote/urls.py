@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from note.views import *
+from rules.views import *
+from dailyreports.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,7 +27,10 @@ urlpatterns = [
     url(r'^n/document/$', read_note),
     url(r'^n/comment/$', submit_comment),
     url(r'^n/download/$', file_download),
-    url(r'^n/test/$', test),
+    url(r'^n/report/$', report),
+    url(r'^n/rules/$', get_all_rules),
+    url(r'^n/rules/read/$', view_rules),
+    url(r'^n/rules/upload/$', upload_rules),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

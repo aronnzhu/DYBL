@@ -28,7 +28,7 @@ class Comment(models.Model):
     comment = models.TextField('', max_length=2000)
     note = models.ForeignKey(Note)
     display = models.BooleanField(default=1)
-    uploads = models.FileField('附件',upload_to='note/%Y%m%d', blank=True)
+    uploads = models.FileField('附件', upload_to='note/%Y%m%d', blank=True)
 
 
     class Meta:
