@@ -1,0 +1,259 @@
+{% extends "rules_upload.html" %}
+{% load static %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Bohai Capital" />
+	<meta name="author" content="Bohaiit" />
+	<title>渤海金控企业门户</title>
+
+    <link rel="stylesheet" href="{%static "css/bootstrap.css" %}">
+	<link rel="stylesheet" href="{%static "css/font-icons/entypo/css/entypo.css" %}">
+    <link rel="stylesheet" href="{%static "css/neon.css" %}">
+    <link rel="stylesheet" href="{%static "js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css" %}">
+	<link rel="stylesheet" href="{%static "css/font-icons/entypo/css/entypo.css" %}">
+<!--	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+-->
+    <link rel="stylesheet" href="{%static "css/bootstrap.css" %}">
+	<link rel="stylesheet" href="{%static "css/neon-core.css" %}">
+	<link rel="stylesheet" href="{%static "css/neon-theme.css" %}">
+	<link rel="stylesheet" href="{%static "css/neon-forms.css" %}">
+	<link rel="stylesheet" href="{%static "css/custom.css" %}">
+    <link rel="stylesheet" href="{%static "js/wysihtml5/bootstrap-wysihtml5.css"%}">
+	<link rel="stylesheet" href="{%static "js/selectboxit/jquery.selectBoxIt.css"%}">
+    <script href="{%static "js/jquery-1.11.0.min.js" %}"></script>
+	<!--[if lt IE 9]><script src="{%static "js/ie8-responsive-file-warning.js" %}"></script><![endif]-->
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+<!--
+<script type="text/javascript">
+function getpath(obj){
+//判断浏览器
+  var Sys = {};
+  var ua = navigator.userAgent.toLowerCase();
+  var s;
+  (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+  (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+  (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+  (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+  (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+  var file_url="";
+  if(Sys.ie<="6.0"){
+    //ie5.5,ie6.0
+    file_url = obj.value;
+  }else if(Sys.ie>="7.0"){
+    //ie7,ie8
+    obj.select();
+    file_url = document.selection.createRange().text;
+  }else if(Sys.firefox){
+    //fx
+    //file_url = document.getElementById("file").files[0].getAsDataURL();//获取的路径为FF识别的加密字符串
+    file_url = readFileFirefox(obj);
+  }else if(Sys.chrome){
+      alert("chrome");
+      alert(document.getElementById(obj).value);
+    file_url = obj.value;
+  }
+  alert(file_url);
+  document.getElementById(obj).innerHTML="获取文件域完整路径为："+file_url;
+
+}
+
+</script>
+
+
+
+<script type="text/javascript" src="{%static "js/jquery-1.11.0.min.js" %}"></script>
+<script type="text/javascript">
+
+var imgurl = "";
+
+function getImgURL(node) {
+    alert("getimgurl");
+    var imgURL = "";
+    var file = null;
+    if(node.files && node.files[0] ){
+        file = node.files[0];
+    }else if(node.files && node.files.item(0)) {
+        file = node.files.item(0);
+    }
+
+    //这种获取方式支持IE10
+    node.select();
+    imgURL = document.selection.createRange().text;
+    alert(imgURL);
+
+
+    var textHtml = "<img src='"+imgURL+"'/>";     //创建img标签用于显示图片
+    alert(textHtml);
+    $(".mark").after(textHtml);
+    return imgURL;
+}
+
+</script>
+
+    <script type="text/javascript">
+function readFile(fileBrowser) {
+    alert("readfiel");
+    if (navigator.userAgent.indexOf("MSIE")!=-1) //判断是否是ie浏览器
+        readFileIE(fileBrowser);
+    else if (navigator.userAgent.indexOf("Firefox")!=-1 || navigator.userAgent.indexOf("Mozilla")!=-1) //判断是否是火狐浏览器
+        readFileFirefox(fileBrowser);
+    else
+        alert("Not IE or Firefox (userAgent=" + navigator.userAgent + ")");
+}
+function readFileFirefox(fileBrowser) {
+    try {
+        netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+    }
+    catch (e) {
+        alert('无法访问本地文件，由于浏览器安全设置。为了克服这一点，请按照下列步骤操作：(1)在地址栏输入"about:config";(2) 右键点击并选择 New->Boolean; (3) 输入"signed.applets.codebase_principal_support" （不含引号）作为一个新的首选项的名称;(4) 点击OK并试着重新加载文件'');
+        return;
+    }
+    var fileName=fileBrowser.value; //这一步就能得到客户端完整路径。下面的是否判断的太复杂，还有下面得到ie的也很复杂。
+    var file = Components.classes["@mozilla.org/file/local;1"]
+        .createInstance(Components.interfaces.nsILocalFile);
+    try {
+        // Back slashes for windows
+        file.initWithPath( fileName.replace(/\//g, "\\\") );
+    }
+    catch(e) {
+        if (e.result!=Components.results.NS_ERROR_FILE_UNRECOGNIZED_PATH) throw e;
+        alert("File '" + fileName + "' cannot be loaded: relative paths are not allowed. Please provide an absolute path to this file.");
+        return;
+    }
+    if ( file.exists() == false ) {
+        alert("File '" + fileName + "' not found.");
+        return;
+    }
+    alert(file.path); // I test to get the local file's path.
+    var is = Components.classes["@mozilla.org/network/file-input-stream;1"].createInstance( Components.interfaces.nsIFileInputStream );
+    try { is.init( file,0x01, 00004, null); }
+    catch (e) {
+        if (e.result!=Components.results.NS_ERROR_FILE_ACCESS_DENIED) throw e;
+        alert("Unable to access local file '" + fileName + "' because of file permissions. Make sure the file and/or parent directories are readable.");
+        return;
+    }
+    var sis = Components.classes["@mozilla.org/scriptableinputstream;1"].createInstance( Components.interfaces.nsIScriptableInputStream );
+    sis.init( is );
+    var data = sis.read( sis.available() );
+    alert("Data from file: " + data); // I test to get the local file's data.
+}
+function readFileIE(fileBrowser) {
+    var data;
+    try {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var fileName=fso.GetAbsolutePathName(fileBrowser.value);
+        if (!fso.FileExists(fileName)) {
+            alert("File '" + fileName + "' not found.");
+            return;
+        }
+        var file = fso.OpenTextFile(fileName, 1);
+        data = file.ReadAll();
+        alert("Data from file: " + data);
+        file.Close();
+    }
+    catch(e) {
+        if (e.number == -2146827859) {
+            // This is what we get if the browser's security settings forbid
+            // the use of the FileSystemObject ActiveX control浅谈FireFox中file控件不能取到客户端文件的完整路径的问题 (转) - 青软学生 - wodexinlihua1 的博客
+            alert('Unable to access local files due to browser security settings. To overcome this, Go to Tools->Internet Options->Security->Custom Level. Find the setting for "Initialize and script ActiveX controls not marked as safe" and change it to "Enable" or "Prompt"');
+        }
+        else if (e.number == -2146828218) {
+            // This is what we get if the browser can't access the file
+            // because of file permissions浅谈FireFox中file控件不能取到客户端文件的完整路径的问题 (转) - 青软学生 - wodexinlihua1 的博客
+            alert("Unable to access local file '" + fileName + "' because of file permissions. Make sure the file and/or parent directories are readable.");
+        }
+        else throw e;
+    }
+}
+    </script>
+
+
+
+<script>
+    window.onload=function(){
+        var doc_content = CKEDITOR.instances.hcode.getData();
+        alert(doc_content);
+        html_content = decodeURIComponent(doc_content);
+        alert(html_content);
+        //CKEDITOR.instances.hcode.setData(byteToString(html_content));
+
+    }
+
+
+         function byteToString(arr) {
+        if(typeof arr === 'string') {
+            return arr;
+        }
+        var str = '',
+            _arr = arr;
+        for(var i = 0; i < _arr.length; i++) {
+            var one = _arr[i].toString(2),
+                v = one.match(/^1+?(?=0)/);
+            if(v && one.length == 8) {
+                var bytesLength = v[0].length;
+                var store = _arr[i].toString(2).slice(7 - bytesLength);
+                for(var st = 1; st < bytesLength; st++) {
+                    store += _arr[st + i].toString(2).slice(2);
+                }
+                str += String.fromCharCode(parseInt(store, 2));
+                i += bytesLength - 1;
+            } else {
+                str += String.fromCharCode(_arr[i]);
+            }
+        }
+        return str;
+    }
+
+
+
+
+    </script>
+
+     -->
+</head>
+{% endblock %}
+
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "预览" "../" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container-fluid" >
+        <div class="row">
+
+            <div class="col-md-12">
+                {% render_breadcrumbs %}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <textarea class="form-control ckeditor" id="hcode">  </textarea>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
