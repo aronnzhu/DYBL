@@ -28,9 +28,14 @@ urlpatterns = [
     url(r'^n/comment/$', submit_comment),
     url(r'^n/download/$', file_download),
     url(r'^n/report/$', report),
-    url(r'^n/rules/$', get_all_rules),
-    url(r'^n/rules/read/$', view_rules),
-    url(r'^n/rules/upload/$', upload_rules),
+
+
+    url(r'^n/rules/$', rules_all),
+    url(r'^n/rules/query/$', rules_list),
+    url(r'^n/rules/check/$', rules_detail),
+    url(r'^n/rules/upload/$', rules_upload),
+    url(r'^n/rules/preview/$', rules_preview),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
