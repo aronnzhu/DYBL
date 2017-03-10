@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^n/rules/check/$', rules_detail),
     url(r'^n/rules/upload/$', rules_upload),
     url(r'^n/rules/preview/$', rules_preview),
-
+    url(r'^n/rules/submit/$', rules_submit),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

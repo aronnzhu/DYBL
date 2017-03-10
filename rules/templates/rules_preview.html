@@ -244,15 +244,28 @@ function readFileIE(fileBrowser) {
     </div>
 
     <div class="container">
-
+    <form action="../submit/" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
         <div class="row">
 
             <div class="col-md-12">
 
-                <textarea class="form-control ckeditor" id="hcode"> {{ all_the_text }} </textarea>
+                <textarea class="form-control ckeditor" id="hcode" name="fcontent"> {{ all_the_text }} </textarea>
 
             </div>
+            <div class="col-md-12">
+                <br/>
+                <br/>
+                <input type="text" name="fname" value="{{ file_name }}" style="visibility:hidden"/>
+                <input type="text" id="fuser" value="{{ user.username }}" style="visibility:hidden"/>
+                <input type="text" id="fpath" value="{{ file_full_path }}" style="visibility:hidden"/>
+                <input type="button" value="返回" onlick="javascript:history.back(-1);"/>
+                <input type="submit" value="上传" />
+                <br/>
+                <br/>
+            </div>
         </div>
+    </form>
 
     </div>
 
